@@ -1,0 +1,8 @@
+[submodule "plugins/UserMgr/libs/boost"]
+	path = plugins/UserMgr/libs/boost
+	owner = plugins/UserMgr/libs
+	url = ^/trunk/3dparty/boost
+	branch = /
+	fetch = :refs/remotes/git-svn
+	remote = svn
+	type = dir
