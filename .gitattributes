@@ -2035,6 +2035,7 @@ plugins/UserMgr/src/SSPLogon.cpp -text
 plugins/UserMgr/src/SSPLogon.h -text
 plugins/UserMgr/src/UserMgr.cpp -text
 plugins/UserMgr/src/UserMgr.h -text
+plugins/UserMgr/tests/_testlib/ButtonEvent.dll -text
 plugins/UserMgr/tests/_testlib/common.nsi -text
 plugins/UserMgr/tests/_testlib/config.nsi -text
 plugins/UserMgr/tests/build.impl.bat -text
