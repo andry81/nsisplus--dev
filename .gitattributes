@@ -2493,5 +2493,9 @@ plugins/nsisFile/tests/_testlib/common.nsi -text
 plugins/nsisFile/tests/_testlib/config.nsi -text
 plugins/nsisFile/tests/build.impl.bat -text
 plugins/nsisFile/tests/configure.bat -text
+plugins/nsisFile/tests/test_insert_bytes/build.bat -text
+plugins/nsisFile/tests/test_insert_bytes/main.nsi -text
+plugins/nsisFile/tests/test_insert_bytes_to_end/build.bat -text
+plugins/nsisFile/tests/test_insert_bytes_to_end/main.nsi -text
 plugins/nsisFile/tests/test_sample/build.bat -text
 plugins/nsisFile/tests/test_sample/main.nsi -text

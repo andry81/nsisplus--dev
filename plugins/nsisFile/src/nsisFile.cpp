@@ -18,6 +18,15 @@ Permission is granted to anyone to use this software for any purpose, including 
 
 #include "nsisFile.h"
 #include <shlwapi.h>
+#include <assert.h>
+
+
+#define if_break(x) if(!(x)); else switch(0) case 0: default:
+
+// defines for internal tests
+#define COPY_MOVE_STACK_BLOCK_SIZE 64 * 1024
+#define COPY_MOVE_HEAP_BLOCK_SIZE0 1 * 1024 * 1024
+#define COPY_MOVE_HEAP_BLOCK_SIZE1 10 * 1024 * 1024
 
 
 HINSTANCE g_hInstance = HINSTANCE();
@@ -65,6 +74,117 @@ DWORD ConvertHexToBin(LPTSTR hex, BYTE** bin)
 	return scanBin-*bin;
 }
 
+bool IsSetFilePointerError(DWORD offset, DWORD & status)
+{
+	status = 0; // just in case
+
+	if (offset == INVALID_SET_FILE_POINTER) {
+		status = GetLastError();
+		// MSDN:
+		//  Note  Because INVALID_SET_FILE_POINTER is a valid value for the low-order DWORD of the new file pointer,
+		//  you must check both the return value of the function and the error code returned by GetLastError to determine
+		//  whether or not an error has occurred. If an error has occurred, the return value of SetFilePointer is
+		//  INVALID_SET_FILE_POINTER and GetLastError returns a value other than NO_ERROR.
+		if (status != NO_ERROR) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool IsWriteFileError(DWORD & status)
+{
+	status = GetLastError();
+	// MSDN:
+	//  Note  The GetLastError code ERROR_IO_PENDING is not a failure; it designates the write operation is pending completion asynchronously.
+	if (status != ERROR_IO_PENDING) {
+		return true;
+	}
+
+	return false;
+}
+
+bool IsReadFileError(DWORD & status)
+{
+	status = GetLastError();
+	// MSDN:
+	//  Note  The GetLastError code ERROR_IO_PENDING is not a failure; it designates the read operation is pending completion asynchronously.
+	if (status != ERROR_IO_PENDING) {
+		return true;
+	}
+
+	return false;
+}
+
+DWORD MoveFileContent(HANDLE hFile, DWORD fromOffset, DWORD toOffset, DWORD moveDistance, BYTE * memBuf, size_t bufSize)
+{
+	DWORD status = 0;
+	DWORD offset;
+	DWORD bytes;
+
+	assert(moveDistance);
+	assert(bufSize);
+
+	DWORD moveOffset = toOffset - fromOffset;
+	assert(moveOffset);
+
+	const DWORD blocksQuotient = moveDistance / bufSize;
+	const DWORD blockRemainder = moveDistance % bufSize;
+
+	DWORD copyOffset = moveDistance > bufSize ? fromOffset + moveDistance - blockRemainder : fromOffset;
+
+	SetLastError(0); // just in case
+
+	offset = SetFilePointer(hFile, copyOffset, NULL, FILE_BEGIN);
+	if (IsSetFilePointerError(offset, status)) return status;
+
+	SetLastError(0); // just in case
+
+	if(!ReadFile(hFile, memBuf, blockRemainder, &bytes, NULL)) {
+		if(IsReadFileError(status)) return status;
+	}
+
+	SetLastError(0); // just in case
+
+	offset = SetFilePointer(hFile, copyOffset + moveOffset, NULL, FILE_BEGIN);
+	if (IsSetFilePointerError(offset, status)) return status;
+
+	SetLastError(0); // just in case
+
+	if(!WriteFile(hFile, memBuf, bytes, &bytes, NULL)) {
+		if (IsWriteFileError(status)) return status;
+	}
+
+	for (DWORD i = 0; i < blocksQuotient; i++) {
+		copyOffset = fromOffset + (blocksQuotient - i - 1) * bufSize;
+
+		SetLastError(0); // just in case
+
+		offset = SetFilePointer(hFile, copyOffset, NULL, FILE_BEGIN);
+		if (IsSetFilePointerError(offset, status)) return status;
+
+		SetLastError(0); // just in case
+
+		if(!ReadFile(hFile, memBuf, bufSize, &bytes, NULL)) {
+			if(IsReadFileError(status)) return status;
+		}
+
+		SetLastError(0); // just in case
+
+		offset = SetFilePointer(hFile, copyOffset + moveOffset, NULL, FILE_BEGIN);
+		if (IsSetFilePointerError(offset, status)) return status;
+
+		SetLastError(0); // just in case
+
+		if(!WriteFile(hFile, memBuf, bytes, &bytes, NULL)) {
+			if (IsWriteFileError(status)) return status;
+		}
+	}
+
+	return status;
+}
+
 }
 
 
@@ -84,8 +204,8 @@ NSISFunction(FileReadBytes)
 	{
 		DWORD status;
 		HANDLE hFile = NULL;
-		DWORD bytes = 0;
 		LPTSTR result = NULL;
+		DWORD bytes = 0;
 
 		// buffers at the end
 		TCHAR buf[256] = {0};
@@ -98,17 +218,25 @@ NSISFunction(FileReadBytes)
 		bytes = _ttoi(buf);
 
 		__try {
+			if (!bytes) {
+				// nothing to read
+				pushstring(_T("0"));
+				pushstring(_T("OK"));
+				return;
+			}
+
 			result = new TCHAR[bytes*2+1];
 			LPBYTE resultBytes = LPBYTE(result);
 
 			SetLastError(0); // just in case
 
 			if(!ReadFile(hFile, resultBytes, bytes, &bytes, NULL)) {
-				status = GetLastError();
-				pushstring(_T(""));
-				_tprintf(buf, _T("ERROR %d"), status);
-				pushstring(buf);
-				return;
+				if(IsReadFileError(status)) {
+					pushstring(_T("0"));
+					_tprintf(buf, _T("ERROR %d"), status);
+					pushstring(buf);
+					return;
+				}
 			}
 
 			result[bytes*2] = _T('\0');
@@ -198,7 +326,7 @@ NSISFunction(FileWriteBytes)
 		HANDLE hFile = NULL;
 		LPTSTR hex = NULL;
 		BYTE* bin = NULL;
-		DWORD bytes;
+		DWORD bytes = 0;
 
 		// buffers at the end
 		TCHAR buf[256] = {0};
@@ -212,15 +340,23 @@ NSISFunction(FileWriteBytes)
 
 		__try {
 			bytes = ConvertHexToBin(hex, &bin);
+			if (!bytes) {
+				// nothing to write
+				pushstring(_T("0"));
+				pushstring(_T("OK"));
+				return;
+			}
 
 			SetLastError(0); // just in case
 
 			if(!WriteFile(hFile, bin, bytes, &bytes, NULL)) {
-				status = GetLastError();
-				pushstring(_T(""));
-				_tprintf(buf, _T("ERROR %d"), status);
-				pushstring(buf);
-				return;
+				if (IsWriteFileError(status)) {
+					_itot(bytes, buf, 10); // in case if not 0
+					pushstring(buf);
+					_tprintf(buf, _T("ERROR %d"), status);
+					pushstring(buf);
+					return;
+				}
 			}
 
 			_itot(bytes, buf, 10);
@@ -230,6 +366,128 @@ NSISFunction(FileWriteBytes)
 		__finally {
 			delete [] hex;
 			delete [] bin;
+		}
+	}
+}
+
+NSISFunction(FileWriteInsertBytes)
+{
+	EXDLL_INIT();
+	extra->RegisterPluginCallback(g_hInstance, PluginCallback);
+	{
+		DWORD status;
+		HANDLE hFile = NULL;
+		LPTSTR hex = NULL;
+		BYTE* bin = NULL;
+		BYTE* moveBuf = NULL;
+		DWORD bytes = 0;
+		DWORD insertOffset;
+		DWORD offset;
+		DWORD endOffset;
+		DWORD moveBlockSize;
+		DWORD moveDistance;
+
+		// buffers at the end
+		TCHAR buf[256] = {0};
+
+		g_hwndParent = hwndParent;
+
+		popstring(buf);
+		hFile = HANDLE(_ttoi(buf));
+		hex = new TCHAR[string_size];
+		popstring(hex);
+
+		__try {
+			bytes = ConvertHexToBin(hex, &bin);
+			if (!bytes) {
+				// nothing to write
+				pushstring(_T("0"));
+				pushstring(_T("OK"));
+				return;
+			}
+
+			bool setError = false;
+			if_break(1) {
+				// get current offset position
+				insertOffset = SetFilePointer(hFile, 0, NULL, FILE_CURRENT);
+				if (setError = IsSetFilePointerError(insertOffset, status)) break;
+
+				// set file pointer to the end of the data before the file resize
+				endOffset = SetFilePointer(hFile, 0, NULL, FILE_END);
+				if (setError = IsSetFilePointerError(endOffset, status)) break;
+
+				if (insertOffset < endOffset) {
+					// resize file at first
+					offset = SetFilePointer(hFile, bytes, NULL, FILE_END);
+					if (setError = IsSetFilePointerError(offset, status)) break;
+
+					// commit resize
+					if (!SetEndOfFile(hFile)) {
+						status = GetLastError();
+						setError = true;
+						break;
+					}
+				}
+			}
+
+			if (setError) {
+				pushstring(_T("0"));
+				_tprintf(buf, _T("ERROR %d"), status);
+				pushstring(buf);
+				return;
+			}
+
+			// move file content after insert point to the end:
+			// - by 64KB block in the stack if endOffset-insertOffset <= 64KB
+			// - by 64KB block in the heap if endOffset-insertOffset <= 1MB
+			// - by 10MB block in the heap if endOffset-insertOffset > 1MB
+			if (insertOffset < endOffset) {
+				moveDistance = endOffset - insertOffset;
+				if (moveDistance <= COPY_MOVE_STACK_BLOCK_SIZE) {
+					BYTE moveBufStack[COPY_MOVE_STACK_BLOCK_SIZE];
+					MoveFileContent(hFile, insertOffset, insertOffset + bytes, moveDistance, moveBufStack, sizeof(moveBufStack)/sizeof(moveBufStack[0]));
+				}
+				else {
+					if (moveDistance > COPY_MOVE_HEAP_BLOCK_SIZE0) {
+						moveBlockSize = COPY_MOVE_HEAP_BLOCK_SIZE1;
+					}
+					else {
+						moveBlockSize = COPY_MOVE_HEAP_BLOCK_SIZE0;
+					}
+					moveBuf = new BYTE[moveBlockSize];
+					MoveFileContent(hFile, insertOffset, insertOffset + bytes, moveDistance, moveBuf, moveBlockSize);
+				}
+
+				// restore file pointer
+				offset = SetFilePointer(hFile, insertOffset, NULL, FILE_BEGIN);
+				if (setError = IsSetFilePointerError(offset, status)) {
+					pushstring(_T("0"));
+					_tprintf(buf, _T("ERROR %d"), status);
+					pushstring(buf);
+					return;
+				}
+			}
+
+			SetLastError(0); // just in case
+
+			if(!WriteFile(hFile, bin, bytes, &bytes, NULL)) {
+				if (IsWriteFileError(status)) {
+					_itot(bytes, buf, 10); // in case if not 0
+					pushstring(buf);
+					_tprintf(buf, _T("ERROR %d"), status);
+					pushstring(buf);
+					return;
+				}
+			}
+
+			_itot(bytes, buf, 10);
+			pushstring(buf);
+			pushstring(_T("OK"));
+		}
+		__finally {
+			delete [] hex;
+			delete [] bin;
+			delete [] moveBuf;
 		}
 	}
 }
@@ -271,11 +529,12 @@ NSISFunction(FileFindBytes)
 				SetLastError(0); // just in case
 
 				if(!ReadFile(hFile, buffer, min(maxlen, buflen), &read, NULL)) {
-					status = GetLastError();
-					pushstring(_T("-1"));
-					_tprintf(buf, _T("ERROR %d"), status);
-					pushstring(buf);
-					return;
+					if(IsReadFileError(status)) {
+						pushstring(_T("-1"));
+						_tprintf(buf, _T("ERROR %d"), status);
+						pushstring(buf);
+						return;
+					}
 				}
 
 				maxlen -= read;
@@ -287,8 +546,7 @@ NSISFunction(FileFindBytes)
 							SetLastError(0); // just in case
 
 							found = SetFilePointer(hFile, scan-1-buffer-read, NULL, FILE_CURRENT);
-							if (found == INVALID_SET_FILE_POINTER) {
-								status = GetLastError();
+							if (IsSetFilePointerError(found, status)) {
 								pushstring(_T("-1"));
 								_tprintf(buf, _T("ERROR %d"), status);
 								pushstring(buf);
@@ -305,11 +563,12 @@ NSISFunction(FileFindBytes)
 							SetLastError(0); // just in case
 
 							if(!ReadFile(hFile, buffer+left-1, min(maxlen, buflen-left+1), &read, NULL)) { // fill more of buffer from file
-								status = GetLastError();
-								pushstring(_T("-1"));
-								_tprintf(buf, _T("ERROR %d"), status);
-								pushstring(buf);
-								return;
+								if(IsReadFileError(status)) {
+									pushstring(_T("-1"));
+									_tprintf(buf, _T("ERROR %d"), status);
+									pushstring(buf);
+									return;
+								}
 							}
 
 							maxlen -= read;
@@ -319,11 +578,12 @@ NSISFunction(FileFindBytes)
 
 								found = SetFilePointer(hFile, 0-read-1, NULL, FILE_CURRENT);
 								if (found == INVALID_SET_FILE_POINTER) {
-									status = GetLastError();
-									pushstring(_T("-1"));
-									_tprintf(buf, _T("ERROR %d"), status);
-									pushstring(buf);
-									return;
+									if (IsSetFilePointerError(found, status)) {
+										pushstring(_T("-1"));
+										_tprintf(buf, _T("ERROR %d"), status);
+										pushstring(buf);
+										return;
+									}
 								}
 
 								break;

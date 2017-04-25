@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nsisFile", "nsisFile.vcxproj", "{0A48A213-5F9F-8CA8-03AC-79130887A644}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nsisFile", "nsisFile.vcxproj", "{60573B3A-3166-498E-C3D7-0AA8ECA1B3F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,12 +10,12 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0A48A213-5F9F-8CA8-03AC-79130887A644}.Debug|Win32.ActiveCfg = Debug|Win32
-		{0A48A213-5F9F-8CA8-03AC-79130887A644}.Debug|Win32.Build.0 = Debug|Win32
-		{0A48A213-5F9F-8CA8-03AC-79130887A644}.Release UNICODE|Win32.ActiveCfg = Release UNICODE|Win32
-		{0A48A213-5F9F-8CA8-03AC-79130887A644}.Release UNICODE|Win32.Build.0 = Release UNICODE|Win32
-		{0A48A213-5F9F-8CA8-03AC-79130887A644}.Release|Win32.ActiveCfg = Release|Win32
-		{0A48A213-5F9F-8CA8-03AC-79130887A644}.Release|Win32.Build.0 = Release|Win32
+		{60573B3A-3166-498E-C3D7-0AA8ECA1B3F9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{60573B3A-3166-498E-C3D7-0AA8ECA1B3F9}.Debug|Win32.Build.0 = Debug|Win32
+		{60573B3A-3166-498E-C3D7-0AA8ECA1B3F9}.Release UNICODE|Win32.ActiveCfg = Release UNICODE|Win32
+		{60573B3A-3166-498E-C3D7-0AA8ECA1B3F9}.Release UNICODE|Win32.Build.0 = Release UNICODE|Win32
+		{60573B3A-3166-498E-C3D7-0AA8ECA1B3F9}.Release|Win32.ActiveCfg = Release|Win32
+		{60573B3A-3166-498E-C3D7-0AA8ECA1B3F9}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

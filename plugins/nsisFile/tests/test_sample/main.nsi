@@ -1,13 +1,14 @@
-; nsisFile - Sample script
-
+!include "nsDialogs.nsh"
+!include "LogicLib.nsh"
+!include "MUI2.nsh"
 !include "${TEST_LIB_ROOT}\common.nsi"
 !include "${TEST_LIB_ROOT}\config.nsi"
 
-Name "Sample nsisFile"
-#OutFile "Sample.exe"
-ShowInstDetails show	
+!insertmacro MUI_PAGE_INSTFILES
 
-Section "Main program"
+Section -Hidden
+  MessageBox MB_OK "Waiting Debugger..."
+
   Delete "Temp.tmp"
   FileOpen $0 "Temp.tmp" "a"
   FileWrite $0 "Test-Atotorney"
@@ -52,3 +53,7 @@ Section "Main program"
   DetailPrint 'FileTruncate: $1'
   FileClose $0
 SectionEnd
+
+ShowInstDetails show
+
+!insertmacro MUI_LANGUAGE "English"
