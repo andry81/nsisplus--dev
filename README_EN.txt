@@ -1,6 +1,6 @@
 * README_EN.txt
 * 2017.05.28
-* NSISv30rel patches
+* NsisSetupDev
 
 1. DESCRIPTION
 2. REPOSITORIES
@@ -9,29 +9,21 @@
 -------------------------------------------------------------------------------
 1. DESCRIPTION
 -------------------------------------------------------------------------------
-This is the patched sources for the NSIS 3.0.
+3dparty libraries, nsis binaries, patches and plugins.
 
 The latest version is here: sf.net/p/nsisplus
 
 WARNING:
   Use the SVN access to find out new functionality and bug fixes:
-    https://svn.code.sf.net/p/nsisplus/NsisSetupDev/trunk
-
-Main list of changes:
-* disabled MakeLangId build because of an error:
-  sourceforge.net/p/nsis/bugs/1159
-* call MUI_LANGDLL_DISPLAY_ABORT macro before the raw Abort call to call
-  a custom user abort
-* increased maximal length of global variables from 60 to 128
-* minor fixes
+    https://svn.code.sf.net/p/nsisplus/NsisSetupLib/trunk
 
 -------------------------------------------------------------------------------
 2. REPOSITORIES
 -------------------------------------------------------------------------------
 Primary:
-  * https://svn.code.sf.net/p/nsisplus/NsisSetupDev/trunk
+  * https://svn.code.sf.net/p/nsisplus/NsisSetupLib/trunk
 Secondary:
-  * https://github.com/andry81/nsisplus--NsisSetupDev.git
+  * https://github.com/andry81/nsisplus--NsisSetupLib.git
 
 -------------------------------------------------------------------------------
 3. AUTHOR EMAIL

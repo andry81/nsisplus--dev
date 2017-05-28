@@ -1,11 +1,12 @@
 * README_EN.txt
-* 2017.04.17
+* 2017.05.28
 * StdUtils
 
 1. DESCRIPTION
 2. LICENSE
-3. DEPLOY
-4. AUTHOR EMAIL
+3. REPOSITORIES
+4. DEPLOY
+5. AUTHOR EMAIL
 
 -------------------------------------------------------------------------------
 1. DESCRIPTION
@@ -13,6 +14,12 @@
 This is the fork of the NSIS StdUtils plugin from here:
 http://nsis.sourceforge.net/StdUtils_plug-in
 https://github.com/lordmulder/stdutils
+
+The latest version is here: sf.net/p/nsisplus
+
+WARNING:
+  Use the SVN access to find out new functionality and bug fixes:
+    https://svn.code.sf.net/p/nsisplus/NsisSetupDev/trunk
 
 Main list of changes:
 * ansi (multibyte) version
@@ -28,11 +35,19 @@ As is, no warranties and guarantees or anything similar. Use at your own risk.
 So long and be the code with you.
 
 -------------------------------------------------------------------------------
-3. DEPLOY
+3. REPOSITORIES
+-------------------------------------------------------------------------------
+Primary:
+  * https://svn.code.sf.net/p/nsisplus/NsisSetupDev/trunk
+Secondary:
+  * https://github.com/andry81/nsisplus--NsisSetupDev.git
+
+-------------------------------------------------------------------------------
+4. DEPLOY
 -------------------------------------------------------------------------------
 See details in original source.
 
 -------------------------------------------------------------------------------
-4. AUTHOR EMAIL
+5. AUTHOR EMAIL
 -------------------------------------------------------------------------------
 Andrey Dibrov (andry at inbox dot ru)

@@ -1,12 +1,13 @@
 * README_EN.txt
-* 2017.04.18
+* 2017.05.28
 * NsisFile
 
 1. DESCRIPTION
 2. LICENSE
-3. DEPLOY
-4. TESTS
-5. AUTHOR EMAIL
+3. REPOSITORIES
+4. DEPLOY
+5. TESTS
+6. AUTHOR EMAIL
 
 -------------------------------------------------------------------------------
 1. DESCRIPTION
@@ -14,6 +15,12 @@
 This is the fork of the NSIS nsisFile plugin from here:
 http://nsis.sourceforge.net/NsisFile_plug-in
 http://wiz0u.free.fr/prog/nsisFile/
+
+The latest version is here: sf.net/p/nsisplus
+
+WARNING:
+  Use the SVN access to find out new functionality and bug fixes:
+    https://svn.code.sf.net/p/nsisplus/NsisSetupDev/trunk
 
 Main list of changes:
 * the project converted into Microsoft Visual Studio 2010
@@ -33,12 +40,20 @@ As is, no warranties and guarantees or anything similar. Use at your own risk.
 So long and be the code with you.
 
 -------------------------------------------------------------------------------
-3. DEPLOY
+3. REPOSITORIES
+-------------------------------------------------------------------------------
+Primary:
+  * https://svn.code.sf.net/p/nsisplus/NsisSetupDev/trunk
+Secondary:
+  * https://github.com/andry81/nsisplus--NsisSetupDev.git
+
+-------------------------------------------------------------------------------
+4. DEPLOY
 -------------------------------------------------------------------------------
 1. Install Microsoft Visual Studio 2010 + SP1Rel.
 
 -------------------------------------------------------------------------------
-4. TESTS
+5. TESTS
 -------------------------------------------------------------------------------
 1. Copy into the libs/nsis directory the actual nsis SDK headers and libraries
    with which you want to build.
@@ -50,6 +65,6 @@ So long and be the code with you.
 6. Run tests/<TestName>/test.exe to run a test.
 
 -------------------------------------------------------------------------------
-5. AUTHOR EMAIL
+6. AUTHOR EMAIL
 -------------------------------------------------------------------------------
 Andrey Dibrov (andry at inbox dot ru)
