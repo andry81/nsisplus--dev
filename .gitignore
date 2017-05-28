@@ -1,5 +1,5 @@
 /.git*
 3dparty/.git*
 3dparty/boost/.git
-nsis/.git*
+nsis_patches/.git*
 plugins/.git*
