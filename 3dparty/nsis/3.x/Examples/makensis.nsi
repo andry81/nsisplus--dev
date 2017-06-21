@@ -68,8 +68,12 @@ Caption "NSIS ${VERSION}${NAMESUFFIX} Setup"
 ;Interface Settings
 !define MUI_ABORTWARNING
 
+!define MUI_ICON "${NSISDIR}\Contrib\Graphics\Icons\nsis3-install.ico"
+!define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\nsis3-uninstall.ico"
+
 !define MUI_HEADERIMAGE
-!define MUI_WELCOMEFINISHPAGE_BITMAP "${NSISDIR}\Contrib\Graphics\Wizard\nsis.bmp"
+!define MUI_HEADERIMAGE_BITMAP "${NSISDIR}\Contrib\Graphics\Header\nsis3-branding.bmp"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "${NSISDIR}\Contrib\Graphics\Wizard\nsis3-branding.bmp"
 
 !define MUI_COMPONENTSPAGE_SMALLDESC
 
@@ -820,7 +824,7 @@ Section -post
   WriteRegExpandStr HKLM "${REG_UNINST_KEY}" "UninstallString" '"$INSTDIR\uninst-nsis.exe"'
   WriteRegExpandStr HKLM "${REG_UNINST_KEY}" "InstallLocation" "$INSTDIR"
   WriteRegStr HKLM "${REG_UNINST_KEY}" "DisplayName" "Nullsoft Install System${NAMESUFFIX}"
-  WriteRegStr HKLM "${REG_UNINST_KEY}" "DisplayIcon" "$INSTDIR\NSIS.exe,0"
+  WriteRegStr HKLM "${REG_UNINST_KEY}" "DisplayIcon" "$INSTDIR\uninst-nsis.exe,0"
   WriteRegStr HKLM "${REG_UNINST_KEY}" "DisplayVersion" "${VERSION}"
 !ifdef VER_MAJOR & VER_MINOR & VER_REVISION & VER_BUILD
   WriteRegDWORD HKLM "${REG_UNINST_KEY}" "VersionMajor" "${VER_MAJOR}"

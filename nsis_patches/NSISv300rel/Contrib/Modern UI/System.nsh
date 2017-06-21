@@ -2157,9 +2157,11 @@ Var MUI_TEMP2
   !endif
 
   Pop $LANGUAGE
-  StrCmp $LANGUAGE "cancel" 0 +5
   !ifdef MUI_LANGDLL_DISPLAY_ABORT
+    StrCmp $LANGUAGE "cancel" 0 +3
     Call ${MUI_LANGDLL_DISPLAY_ABORT}
+  !else
+    StrCmp $LANGUAGE "cancel" 0 +2
   !endif
     Abort
 

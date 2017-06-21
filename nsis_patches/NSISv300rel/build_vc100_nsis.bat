@@ -4,14 +4,14 @@ setlocal
 
 rem clean PATH to windows 7 defaults
 set "PATH=C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\"
-set "PATH=%PATH%;c:\Python27\Scripts"
+set "PATH=%PATH%;c:\Python27\Scripts;c:\Python27"
 
 rem registrate the Visual Studio 2010 C++ compiler
 call "%%VS100COMNTOOLS%%\vsvars32.bat"
 
 set "ZLIB_W32=c:\builds\zlib_win32"
 rem set CCFLAGS=/SUBSYSTEM:CONSOLE
-rem set MSDEVDIR=c:\Program Files\Microsoft\Visual Studio 8.0
+rem set MSDEVDIR=c:\Programs\Dev\Microsoft\Visual Studio 8.0
 
 pushd "%~dp0"
 

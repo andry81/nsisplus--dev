@@ -691,7 +691,7 @@ int CEXEBuild::preprocess_string(TCHAR *out, const TCHAR *in, WORD codepage/*=CP
           continue; // outermost while
         else
         {
-          TCHAR tbuf[128], cBracket = _T('\0');
+          TCHAR tbuf[128+4], cBracket = _T('\0');
           bool bDoWarning = true;
 
           if ( *p == _T('[') ) cBracket = _T(']');

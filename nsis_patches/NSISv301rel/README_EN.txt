@@ -1,15 +1,17 @@
 * README_EN.txt
-* 2017.05.28
-* NSISv30rel patches
+* 2017.06.21
+* NSISv301rel patches
 
 1. DESCRIPTION
 2. REPOSITORIES
-3. AUTHOR EMAIL
+3. KNOWN ISSUES
+3.1. An error message on install scons in the Python v2.7.
+4. AUTHOR EMAIL
 
 -------------------------------------------------------------------------------
 1. DESCRIPTION
 -------------------------------------------------------------------------------
-This is the patched sources for the NSIS 3.0.
+This is the patched sources for the NSIS 3.01 (release).
 
 The latest version is here: sf.net/p/nsisplus
 
@@ -34,6 +36,16 @@ Secondary:
   * https://github.com/andry81/nsisplus--NsisSetupDev.git
 
 -------------------------------------------------------------------------------
-3. AUTHOR EMAIL
+3. KNOWN ISSUES
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+3.1. An error message on install scons in the Python v2.7.
+-------------------------------------------------------------------------------
+Solution:
+  1. Try to run `pip install --egg scons` instead.
+
+-------------------------------------------------------------------------------
+4. AUTHOR EMAIL
 -------------------------------------------------------------------------------
 Andrey Dibrov (andry at inbox dot ru)
