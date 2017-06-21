@@ -2360,6 +2360,8 @@ nsis_patches/NSISv300rel/README_EN.txt -text
 nsis_patches/NSISv300rel/SConstruct -text
 nsis_patches/NSISv300rel/Source/build.cpp -text
 nsis_patches/NSISv300rel/build_vc100_nsis.bat -text
+nsis_patches/NSISv300rel/build_vc120_nsis.bat -text
+nsis_patches/NSISv300rel/build_vc80_nsis.bat -text
 nsis_patches/NSISv300rel/cleanup.bat -text
 nsis_patches/NSISv301rel/Contrib/Modern[!!-~]UI[!!-~]2/Localization.nsh -text
 nsis_patches/NSISv301rel/Contrib/Modern[!!-~]UI/System.nsh -text
@@ -2367,6 +2369,8 @@ nsis_patches/NSISv301rel/Include/WinVer.nsh -text
 nsis_patches/NSISv301rel/README_EN.txt -text
 nsis_patches/NSISv301rel/Source/build.cpp -text
 nsis_patches/NSISv301rel/build_vc100_nsis.bat -text
+nsis_patches/NSISv301rel/build_vc120_nsis.bat -text
+nsis_patches/NSISv301rel/build_vc80_nsis.bat -text
 nsis_patches/NSISv301rel/cleanup.bat -text
 plugins/StdUtils/BUILD.tag -text
 plugins/StdUtils/Contrib/StdUtils/StdUtils.aps -text
