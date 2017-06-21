@@ -1950,6 +1950,8 @@
 3dparty/nsis/3.x/Contrib/Graphics/Header/orange-uninstall.bmp -text
 3dparty/nsis/3.x/Contrib/Graphics/Header/orange.bmp -text
 3dparty/nsis/3.x/Contrib/Graphics/Header/win.bmp -text
+3dparty/nsis/3.x/Contrib/Graphics/Icons/XPUI-install.ico -text
+3dparty/nsis/3.x/Contrib/Graphics/Icons/XPUI-uninstall.ico -text
 3dparty/nsis/3.x/Contrib/Graphics/Icons/arrow-install.ico -text
 3dparty/nsis/3.x/Contrib/Graphics/Icons/arrow-uninstall.ico -text
 3dparty/nsis/3.x/Contrib/Graphics/Icons/arrow2-install.ico -text
