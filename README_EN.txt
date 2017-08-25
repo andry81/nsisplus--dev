@@ -1,5 +1,5 @@
 * README_EN.txt
-* 2017.05.28
+* 2017.08.25
 * NsisSetupDev
 
 1. DESCRIPTION
@@ -15,15 +15,17 @@ The latest version is here: sf.net/p/nsisplus
 
 WARNING:
   Use the SVN access to find out new functionality and bug fixes:
-    https://svn.code.sf.net/p/nsisplus/NsisSetupLib/trunk
+    https://svn.code.sf.net/p/nsisplus/NsisSetupDev/trunk
 
 -------------------------------------------------------------------------------
 2. REPOSITORIES
 -------------------------------------------------------------------------------
 Primary:
-  * https://svn.code.sf.net/p/nsisplus/NsisSetupLib/trunk
-Secondary:
-  * https://github.com/andry81/nsisplus--NsisSetupLib.git
+  * https://svn.code.sf.net/p/nsisplus/NsisSetupDev/trunk
+First mirror:
+  * https://github.com/andry81/nsisplus--NsisSetupDev.git
+Second mirror:
+  * https://bitbucket.org/andry81/nsisplus-NsisSetupDev.git
 
 -------------------------------------------------------------------------------
 3. AUTHOR EMAIL
