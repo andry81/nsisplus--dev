@@ -1,5 +1,5 @@
 * README_EN.txt
-* 2017.05.28
+* 2017.09.13
 * NsisFile
 
 1. DESCRIPTION
@@ -19,8 +19,8 @@ http://wiz0u.free.fr/prog/nsisFile/
 The latest version is here: sf.net/p/nsisplus
 
 WARNING:
-  Use the SVN access to find out new functionality and bug fixes:
-    https://svn.code.sf.net/p/nsisplus/NsisSetupDev/trunk
+  Use the SVN access to find out new functionality and bug fixes.
+  See the REPOSITORIES section.
 
 Main list of changes:
 * the project converted into Microsoft Visual Studio 2010
@@ -44,8 +44,10 @@ So long and be the code with you.
 -------------------------------------------------------------------------------
 Primary:
   * https://svn.code.sf.net/p/nsisplus/NsisSetupDev/trunk
-Secondary:
+First mirror:
   * https://github.com/andry81/nsisplus--NsisSetupDev.git
+Second mirror:
+  * https://bitbucket.org/andry81/nsisplus-NsisSetupDev.git
 
 -------------------------------------------------------------------------------
 4. DEPLOY

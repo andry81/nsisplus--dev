@@ -1,5 +1,5 @@
 * README_EN.txt
-* 2017.05.28
+* 2017.09.13
 * UserMgr
 
 1. DESCRIPTION
@@ -18,8 +18,8 @@ http://nsis.sourceforge.net/UserMgr_plug-in
 The latest version is here: sf.net/p/nsisplus
 
 WARNING:
-  Use the SVN access to find out new functionality and bug fixes:
-    https://svn.code.sf.net/p/nsisplus/NsisSetupDev/trunk
+  Use the SVN access to find out new functionality and bug fixes.
+  See the REPOSITORIES section.
 
 Main list of changes:
 * the project converted into Microsoft Visual Studio 2010
@@ -43,15 +43,17 @@ So long and be the code with you.
 -------------------------------------------------------------------------------
 Primary:
   * https://svn.code.sf.net/p/nsisplus/NsisSetupDev/trunk
-Secondary:
+First mirror:
   * https://github.com/andry81/nsisplus--NsisSetupDev.git
+Second mirror:
+  * https://bitbucket.org/andry81/nsisplus-NsisSetupDev.git
 
 -------------------------------------------------------------------------------
 4. DEPLOY
 -------------------------------------------------------------------------------
 1. Install Microsoft Visual Studio 2010 + SP1Rel.
-2. Copy the boost directory from the /NsisSetupDev/3dparty to
-   /NsisSetupDev/plugins/UserMgr/libs if not done yet.
+2. Copy the boost directory from the `/NsisSetupDev/3dparty` to
+   `/NsisSetupDev/plugins/UserMgr/libs` if not done yet.
 
 -------------------------------------------------------------------------------
 5. TESTS
