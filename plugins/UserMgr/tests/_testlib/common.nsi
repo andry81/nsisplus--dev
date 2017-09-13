@@ -34,6 +34,7 @@ Var /GLOBAL FIRST_FRAME_TICKS
 
 Var /GLOBAL CANCEL
 
+Var /GLOBAL LOCALE
 
 !define FORMAT_MESSAGE_IGNORE_INSERTS  0x00000200
 !define FORMAT_MESSAGE_FROM_STRING     0x00000400
@@ -63,6 +64,18 @@ Var /GLOBAL CANCEL
 !define ASYNC_REQUEST_STATUS_ABORTED      1     ; asynchronous request is aborted in alive thread
 !define ASYNC_REQUEST_STATUS_CANCELLED    254   ; asynchronous request is cancelled, thread associated with the request is terminated
 !define ASYNC_REQUEST_STATUS_NOT_FOUND    255   ; handle is not associated to anyone asynchronous request
+
+
+; locale
+!define LC_ALL          0
+!define LC_COLLATE      1
+!define LC_CTYPE        2
+!define LC_MONETARY     3
+!define LC_NUMERIC      4
+!define LC_TIME         5
+
+!define LC_MIN          LC_ALL
+!define LC_MAX          LC_TIME
 
 
 !define GetWin32ErrorMesssage "!insertmacro GetWin32ErrorMesssage"

@@ -23,6 +23,16 @@ FunctionEnd
 Section -Hidden
   MessageBox MB_OK "Waiting Debugger..."
 
+  ; save current locale
+  UserMgr::GetLocale LC_CTYPE
+  Pop $LOCALE
+
+  ; reset current locale
+  UserMgr::SetLocale LC_CTYPE ".${LocaleCharset}"
+  
+  DetailPrint "Old locale: $\"$LOCALE$\""
+  DetailPrint "New locale: $\".${LocaleCharset}$\""
+
   DetailPrint "Checking user existence: $\"${LocalUser}$\"..."
   UserMgr::GetUser "${LocalUser}"
   Pop $LAST_STATUS_STR

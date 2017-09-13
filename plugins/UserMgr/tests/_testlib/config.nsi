@@ -1,4 +1,5 @@
 ; Windows-1251 source encoding
+!define LocaleCharset "1251" ; english + russian
 
 !define Remote "192.168.1.151"
 !define RemoteUser "Tester"
