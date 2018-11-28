@@ -11,7 +11,7 @@
 -------------------------------------------------------------------------------
 3dparty libraries, nsis binaries, patches and plugins.
 
-The latest version is here: sf.net/p/nsisplus
+The latest version is here: https://sf.net/p/nsisplus
 
 WARNING:
   Use the SVN access to find out new functionality and bug fixes.
