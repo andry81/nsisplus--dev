@@ -2355,6 +2355,7 @@
 3dparty/zlib_win32/test/minigzip_d.exe -text
 3dparty/zlib_win32/zlib1.dll -text
 /README_EN.txt -text
+/changelog.txt -text
 nsis_patches/NSISv300rel/Contrib/Modern[!!-~]UI[!!-~]2/Localization.nsh -text
 nsis_patches/NSISv300rel/Contrib/Modern[!!-~]UI/System.nsh -text
 nsis_patches/NSISv300rel/Include/WinVer.nsh -text

@@ -1,5 +1,5 @@
 * README_EN.txt
-* 2017.08.25
+* 2019.11.24
 * NsisSetupDev
 
 1. DESCRIPTION
@@ -21,11 +21,14 @@ WARNING:
 2. REPOSITORIES
 -------------------------------------------------------------------------------
 Primary:
-  * https://svn.code.sf.net/p/nsisplus/NsisSetupDev/trunk
+  * https://sf.net/p/nsisplus/NsisSetupDev/HEAD/tree/trunk/
+    https://svn.code.sf.net/p/nsisplus/NsisSetupDev/trunk
 First mirror:
-  * https://github.com/andry81/nsisplus--NsisSetupDev.git
+  * https://github.com/andry81/nsisplus--NsisSetupDev/tree/trunk
+    https://github.com/andry81/nsisplus--NsisSetupDev.git
 Second mirror:
-  * https://bitbucket.org/andry81/nsisplus-NsisSetupDev.git
+  * https://bitbucket.org/andry81/nsisplus-NsisSetupDev/src/trunk
+    https://bitbucket.org/andry81/nsisplus-NsisSetupDev.git
 
 -------------------------------------------------------------------------------
 3. AUTHOR EMAIL
