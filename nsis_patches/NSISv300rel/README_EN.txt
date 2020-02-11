@@ -6,7 +6,7 @@
 2. REPOSITORIES
 3. KNOWN ISSUES
 3.1. An error message on install scons in the Python v2.7.
-4. AUTHOR EMAIL
+4. AUTHOR
 
 -------------------------------------------------------------------------------
 1. DESCRIPTION
@@ -46,6 +46,6 @@ Solution:
   1. Try to run `pip install --egg scons` instead.
 
 -------------------------------------------------------------------------------
-4. AUTHOR EMAIL
+4. AUTHOR
 -------------------------------------------------------------------------------
 Andrey Dibrov (andry at inbox dot ru)

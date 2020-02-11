@@ -1,10 +1,10 @@
 * README_EN.txt
-* 2019.11.24
+* 2020.02.10
 * NsisSetupDev
 
 1. DESCRIPTION
 2. REPOSITORIES
-3. AUTHOR EMAIL
+3. AUTHOR
 
 -------------------------------------------------------------------------------
 1. DESCRIPTION
@@ -31,6 +31,6 @@ Second mirror:
     https://bitbucket.org/andry81/nsisplus-NsisSetupDev.git
 
 -------------------------------------------------------------------------------
-3. AUTHOR EMAIL
+3. AUTHOR
 -------------------------------------------------------------------------------
 Andrey Dibrov (andry at inbox dot ru)

@@ -6,7 +6,7 @@
 2. LICENSE
 3. REPOSITORIES
 4. DEPLOY
-5. AUTHOR EMAIL
+5. AUTHOR
 
 -------------------------------------------------------------------------------
 1. DESCRIPTION
@@ -50,6 +50,6 @@ Second mirror:
 See details in original source.
 
 -------------------------------------------------------------------------------
-5. AUTHOR EMAIL
+5. AUTHOR
 -------------------------------------------------------------------------------
 Andrey Dibrov (andry at inbox dot ru)

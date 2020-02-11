@@ -7,7 +7,7 @@
 3. REPOSITORIES
 4. DEPLOY
 5. TESTS
-6. AUTHOR EMAIL
+6. AUTHOR
 
 -------------------------------------------------------------------------------
 1. DESCRIPTION
@@ -67,6 +67,6 @@ Second mirror:
 6. Run tests/<TestName>/test.exe to run a test.
 
 -------------------------------------------------------------------------------
-6. AUTHOR EMAIL
+6. AUTHOR
 -------------------------------------------------------------------------------
 Andrey Dibrov (andry at inbox dot ru)
