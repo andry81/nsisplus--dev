@@ -1,4 +1,5 @@
 * text=auto !eol
+.github/FUNDING.yml -text
 3dparty/boost/include/boost-1_62/boost/algorithm/string/classification.hpp -text
 3dparty/boost/include/boost-1_62/boost/algorithm/string/compare.hpp -text
 3dparty/boost/include/boost-1_62/boost/algorithm/string/concept.hpp -text
