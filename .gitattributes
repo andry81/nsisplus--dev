@@ -2358,6 +2358,7 @@
 /README.md -text
 /README_EN.txt -text
 /changelog.txt -text
+/license.txt -text
 nsis_patches/NSISv300rel/Contrib/Modern[!!-~]UI[!!-~]2/Localization.nsh -text
 nsis_patches/NSISv300rel/Contrib/Modern[!!-~]UI/System.nsh -text
 nsis_patches/NSISv300rel/Include/WinVer.nsh -text
