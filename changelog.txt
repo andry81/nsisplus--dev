@@ -1,3 +1,7 @@
+2023.12.20:
+* changed: svn related files cleanup
+* changed: README*: readme files update
+
 2021.08.14:
 * changed: markdown readme update
 
