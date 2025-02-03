@@ -1,3 +1,6 @@
+2025.02.03:
+* changed: README.md: github markdown blockquotes update
+
 2023.12.20:
 * changed: svn related files cleanup
 * changed: README*: readme files update
