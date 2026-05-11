@@ -9,4 +9,4 @@
 
 ## Copyright and License<a name="copyright-and-license"></a>
 
-Code and documentation copyright 2021 Andrey Dibrov. Code released under [MIT License](https://github.com/andry81/nsisplus--dev/tree/HEAD/license.txt)
+Code and documentation copyright 2017 Andrey Dibrov. Code released under [MIT License](https://github.com/andry81/nsisplus--dev/tree/HEAD/license.txt)
